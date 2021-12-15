@@ -138,13 +138,10 @@ class XctestSession(object):
             'The test type %s is not supported. Supported test types are %s' %
             (test_type, ios_constants.SUPPORTED_TEST_TYPES))
 
-      if test_type != ios_constants.TestType.LOGIC_TEST:
-        xctestrun_factory = xctestrun.XctestRunFactory(
-            app_under_test_dir, test_bundle_dir, self._sdk, self._device_arch,
-            test_type, signing_options, self._work_dir)
-        self._xctestrun_obj = xctestrun_factory.GenerateXctestrun()
-      else:
-        self._logic_test_bundle = test_bundle_dir
+      xctestrun_factory = xctestrun.XctestRunFactory(
+          app_under_test_dir, test_bundle_dir, self._sdk, self._device_arch,
+          test_type, signing_options, self._work_dir)
+      self._xctestrun_obj = xctestrun_factory.GenerateXctestrun()
     self._prepared = True
 
   def SetLaunchOptions(self, launch_options):
